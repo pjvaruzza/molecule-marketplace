@@ -39,16 +39,17 @@
     <section class="hero">
       <div class="wrap">
         <p class="eyebrow">Market-maker for green molecules</p>
-        <h1>From zero to liquidity, one region at a time.</h1>
+        <h1>The coordination layer for the green-molecule economy.</h1>
         <p class="lede">
-          A two-sided marketplace for stranded green hydrogen and byproduct molecules has a
-          chicken-and-egg problem. This tool tells the story of how you solve it &mdash;
-          supply-first, geography-first, manual-first &mdash; and lets you simulate the
-          path to critical mass with your own assumptions.
+          Green hydrogen and byproduct supply is stranded; thousands of industrial buyers are
+          underserved by the majors. We are the marketplace that connects them &mdash; proving
+          demand with signed LOIs before we scale, and stacking credit margin the incumbents
+          ignore. This walkthrough is the thesis; the model shows the path to a defensible
+          network.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#simulator">Run the simulation</a>
-          <a class="btn" href="#thesis">Read the thesis</a>
+          <a class="btn btn-primary" href="#simulator">See the thesis</a>
+          <a class="btn" href="#thesis">Why we win</a>
         </div>
       </div>
     </section>
@@ -56,8 +57,8 @@
     <section id="simulator" class="simulator-section">
       <div class="wrap">
         <div class="tabs" role="tablist" aria-label="Simulator views">
-          <button id="tab-story" class="tab is-active" role="tab" aria-selected="true" aria-controls="story-view">Story walkthrough</button>
-          <button id="tab-model" class="tab" role="tab" aria-selected="false" aria-controls="model-view">Live model</button>
+          <button id="tab-story" class="tab is-active" role="tab" aria-selected="true" aria-controls="story-view">The investment thesis</button>
+          <button id="tab-model" class="tab" role="tab" aria-selected="false" aria-controls="model-view">Path to scale</button>
         </div>
 
         <!-- STORY VIEW -->
@@ -124,10 +125,11 @@
 
           <div class="chart-wrap"><canvas id="growth-chart"></canvas></div>
           <p class="model-note">
-            Critical mass = the month buyers stop needing manual matching because supply density makes most
-            matches automatic (modeled at 25 active buyers). Net revenue = (molecule spread + credit fee) &times;
-            delivered volume, capped by signed supply. The buyer-acquisition rate is modeled as roughly linear;
-            real cold starts are slower in the earliest months.
+            How to read this: critical mass is the point where supply density makes most matches automatic
+            (modeled at 25 active buyers per region) &mdash; the inflection where a coordination business becomes
+            a network. Net revenue = (molecule spread + credit fee) &times; delivered volume, capped by signed supply.
+            Acquisition is modeled roughly linear; in practice the earliest months are slower, which is precisely
+            why the raise funds the cold-start period. These are illustrative assumptions, not projections.
           </p>
           <div class="model-actions">
             <button id="reset-btn" class="btn"><i class="ti ti-refresh" aria-hidden="true"></i> Reset to defaults</button>
@@ -140,27 +142,27 @@
 
     <section id="thesis" class="thesis-section">
       <div class="wrap">
-        <h2>The thesis in one screen</h2>
+        <h2>Why this wins</h2>
         <div class="thesis-grid">
           <article class="thesis-card">
             <span class="thesis-icon"><i class="ti ti-stack-2" aria-hidden="true"></i></span>
-            <h3>Supply-first</h3>
-            <p>Lock soft supply commitments from a handful of producers before approaching buyers. You can't sell what you don't have, and a real offer makes every buyer call credible.</p>
+            <h3>De-risked by design</h3>
+            <p>Supply is locked before buyers are pursued, and back-to-back pricing means we never carry commodity risk. The business proves itself transaction by transaction rather than betting capital on an unvalidated thesis.</p>
           </article>
           <article class="thesis-card">
             <span class="thesis-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
-            <h3>Geography-first</h3>
-            <p>Win one region before expanding. California's credit stack (LCFS + 45V) makes the green-molecule story pencil where pure logistics spread alone would be too thin.</p>
+            <h3>A beachhead, then a template</h3>
+            <p>We win California first &mdash; its LCFS + 45V credit stack is the richest in the country &mdash; then replicate the playbook region by region. Concentrated liquidity in one market beats thin presence in five.</p>
           </article>
           <article class="thesis-card">
-            <span class="thesis-icon"><i class="ti ti-tools" aria-hidden="true"></i></span>
-            <h3>Manual-first</h3>
-            <p>Execute the first deals by hand. The operational knowledge from coordinating real deliveries can't be replicated by building software first. Platform is a Year 2 investment.</p>
+            <span class="thesis-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
+            <h3>A moat the majors won't contest</h3>
+            <p>Air Products and Linde have no structural incentive to serve 10&ndash;100 kg/day buyers. We own the long tail through operational trust &mdash; on-time, on-spec delivery &mdash; which compounds into switching costs they can't easily attack.</p>
           </article>
           <article class="thesis-card">
             <span class="thesis-icon"><i class="ti ti-coin" aria-hidden="true"></i></span>
-            <h3>Credit margin is the moat</h3>
-            <p>The durable margin isn't trucking coordination &mdash; it's orchestrating credit monetization for small players the majors aren't structured to serve. Watch the model with the credit fee at zero.</p>
+            <h3>Margin where others see none</h3>
+            <p>The durable margin isn't trucking coordination &mdash; it's monetizing LCFS and 45V credits for producers too small to do it alone. Set the credit fee to zero in the model and watch how thin a pure-logistics business would be.</p>
           </article>
         </div>
       </div>

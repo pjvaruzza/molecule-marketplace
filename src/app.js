@@ -46,7 +46,7 @@
     ).join("");
 
     $("prev-btn").style.visibility = ci === 0 ? "hidden" : "visible";
-    $("next-btn").innerHTML = ci === STAGES.length - 1 ? "See the live model &rarr;" : "Next stage &rarr;";
+    $("next-btn").innerHTML = ci === STAGES.length - 1 ? "See the path to scale &rarr;" : "Next &rarr;";
   }
 
   $("next-btn").addEventListener("click", () => {
