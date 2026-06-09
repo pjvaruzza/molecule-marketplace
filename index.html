@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Green Molecule Marketplace — Cold Start Simulator</title>
+  <meta name="description" content="An interactive walkthrough and growth model for building a market-maker for green molecules. Story mode narrates the cold-start sequence; model mode simulates the path to critical mass." />
+  <meta property="og:title" content="Green Molecule Marketplace — Cold Start Simulator" />
+  <meta property="og:description" content="Interactive simulation of a green-molecule market-maker: supply-first cold start to critical mass." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.7.0/tabler-icons.min.css" />
+  <link rel="stylesheet" href="./src/styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i class="ti ti-atom-2"></i></span>
+        <div>
+          <p class="brand-name">Green Molecule Marketplace</p>
+          <p class="brand-tag">Cold-start simulator</p>
+        </div>
+      </div>
+      <nav class="header-nav" aria-label="Primary">
+        <a href="#simulator">Simulator</a>
+        <a href="#thesis">Thesis</a>
+        <a href="#footer">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Market-maker for green molecules</p>
+        <h1>From zero to liquidity, one region at a time.</h1>
+        <p class="lede">
+          A two-sided marketplace for stranded green hydrogen and byproduct molecules has a
+          chicken-and-egg problem. This tool tells the story of how you solve it &mdash;
+          supply-first, geography-first, manual-first &mdash; and lets you simulate the
+          path to critical mass with your own assumptions.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#simulator">Run the simulation</a>
+          <a class="btn" href="#thesis">Read the thesis</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulator" class="simulator-section">
+      <div class="wrap">
+        <div class="tabs" role="tablist" aria-label="Simulator views">
+          <button id="tab-story" class="tab is-active" role="tab" aria-selected="true" aria-controls="story-view">Story walkthrough</button>
+          <button id="tab-model" class="tab" role="tab" aria-selected="false" aria-controls="model-view">Live model</button>
+        </div>
+
+        <!-- STORY VIEW -->
+        <div id="story-view" role="tabpanel" aria-labelledby="tab-story">
+          <div class="stage-progress">
+            <span id="stage-pill" class="pill">Stage 1 of 6</span>
+            <div class="progress-track"><div id="stage-bar" class="progress-bar"></div></div>
+          </div>
+
+          <div class="stage-card">
+            <div class="stage-head">
+              <div id="stage-icon" class="stage-icon"><i class="ti ti-flask"></i></div>
+              <div>
+                <p id="stage-title" class="stage-title">Lock up stranded supply</p>
+                <p id="stage-sub" class="stage-sub">Weeks 0&ndash;12 &middot; supply-first</p>
+              </div>
+            </div>
+            <p id="stage-body" class="stage-body"></p>
+            <div id="stage-viz" class="stage-viz"></div>
+            <div id="stage-metric" class="stage-metric"></div>
+          </div>
+
+          <div class="stage-nav">
+            <button id="prev-btn" class="btn">&larr; Back</button>
+            <button id="next-btn" class="btn btn-accent">Next stage &rarr;</button>
+          </div>
+        </div>
+
+        <!-- MODEL VIEW -->
+        <div id="model-view" role="tabpanel" aria-labelledby="tab-model" hidden>
+          <div class="controls-grid">
+            <div class="control">
+              <div class="control-label"><label for="s-prod">Producers signed (LOI)</label><span id="o-prod">3</span></div>
+              <input type="range" id="s-prod" min="1" max="20" value="3" step="1" />
+            </div>
+            <div class="control">
+              <div class="control-label"><label for="s-buy">New buyers / month</label><span id="o-buy">2</span></div>
+              <input type="range" id="s-buy" min="0.5" max="10" value="2" step="0.5" />
+            </div>
+            <div class="control">
+              <div class="control-label"><label for="s-vol">Avg volume / buyer (kg/day)</label><span id="o-vol">50</span></div>
+              <input type="range" id="s-vol" min="10" max="200" value="50" step="10" />
+            </div>
+            <div class="control">
+              <div class="control-label"><label for="s-spread">Molecule spread ($/kg)</label><span id="o-spread">0.50</span></div>
+              <input type="range" id="s-spread" min="0.1" max="2" value="0.5" step="0.1" />
+            </div>
+            <div class="control">
+              <div class="control-label"><label for="s-credit">Credit fee ($/kg)</label><span id="o-credit">0.40</span></div>
+              <input type="range" id="s-credit" min="0" max="3" value="0.4" step="0.1" />
+            </div>
+            <div class="control">
+              <div class="control-label"><label for="s-churn">Monthly churn (%)</label><span id="o-churn">5</span></div>
+              <input type="range" id="s-churn" min="0" max="20" value="5" step="1" />
+            </div>
+          </div>
+
+          <div class="metrics-grid">
+            <div class="metric-card"><p class="metric-label">Active buyers (mo 24)</p><p id="m-buyers" class="metric-val">&mdash;</p></div>
+            <div class="metric-card"><p class="metric-label">Annual GMV (mo 24)</p><p id="m-gmv" class="metric-val">&mdash;</p></div>
+            <div class="metric-card"><p class="metric-label">Annual net revenue</p><p id="m-rev" class="metric-val">&mdash;</p></div>
+            <div class="metric-card"><p class="metric-label">Critical mass hit</p><p id="m-crit" class="metric-val">&mdash;</p></div>
+          </div>
+
+          <div class="chart-wrap"><canvas id="growth-chart"></canvas></div>
+          <p class="model-note">
+            Critical mass = the month buyers stop needing manual matching because supply density makes most
+            matches automatic (modeled at 25 active buyers). Net revenue = (molecule spread + credit fee) &times;
+            delivered volume, capped by signed supply. The buyer-acquisition rate is modeled as roughly linear;
+            real cold starts are slower in the earliest months.
+          </p>
+          <div class="model-actions">
+            <button id="reset-btn" class="btn"><i class="ti ti-refresh" aria-hidden="true"></i> Reset to defaults</button>
+            <button id="share-btn" class="btn"><i class="ti ti-link" aria-hidden="true"></i> Copy shareable scenario</button>
+          </div>
+          <p id="share-status" class="share-status" role="status"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="thesis" class="thesis-section">
+      <div class="wrap">
+        <h2>The thesis in one screen</h2>
+        <div class="thesis-grid">
+          <article class="thesis-card">
+            <span class="thesis-icon"><i class="ti ti-stack-2" aria-hidden="true"></i></span>
+            <h3>Supply-first</h3>
+            <p>Lock soft supply commitments from a handful of producers before approaching buyers. You can't sell what you don't have, and a real offer makes every buyer call credible.</p>
+          </article>
+          <article class="thesis-card">
+            <span class="thesis-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
+            <h3>Geography-first</h3>
+            <p>Win one region before expanding. California's credit stack (LCFS + 45V) makes the green-molecule story pencil where pure logistics spread alone would be too thin.</p>
+          </article>
+          <article class="thesis-card">
+            <span class="thesis-icon"><i class="ti ti-tools" aria-hidden="true"></i></span>
+            <h3>Manual-first</h3>
+            <p>Execute the first deals by hand. The operational knowledge from coordinating real deliveries can't be replicated by building software first. Platform is a Year 2 investment.</p>
+          </article>
+          <article class="thesis-card">
+            <span class="thesis-icon"><i class="ti ti-coin" aria-hidden="true"></i></span>
+            <h3>Credit margin is the moat</h3>
+            <p>The durable margin isn't trucking coordination &mdash; it's orchestrating credit monetization for small players the majors aren't structured to serve. Watch the model with the credit fee at zero.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="site-footer">
+    <div class="wrap footer-inner">
+      <div>
+        <p class="footer-name">Green Molecule Marketplace</p>
+        <p class="footer-note">A planning and storytelling tool. Figures are illustrative assumptions, not forecasts. Verify all regulatory and market data independently.</p>
+      </div>
+      <p class="footer-meta">Built as an internal concept simulator &middot; <span id="year"></span></p>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="./src/stages.js"></script>
+  <script src="./src/model.js"></script>
+  <script src="./src/app.js"></script>
+</body>
+</html>

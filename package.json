@@ -1,0 +1,12 @@
+{
+  "name": "green-molecule-marketplace",
+  "version": "1.0.0",
+  "description": "Interactive cold-start simulator for a green-molecule marketplace: a story walkthrough plus an adjustable growth model to critical mass.",
+  "private": true,
+  "scripts": {
+    "test": "node test/model.test.js",
+    "serve": "npx --yes serve@14 ."
+  },
+  "keywords": ["hydrogen", "marketplace", "green-molecules", "simulator", "cold-start"],
+  "license": "MIT"
+}
