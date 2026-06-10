@@ -16,14 +16,14 @@ const STAGES = [
     title: "The market has stranded supply", sub: "The opening",
     body: "Green and byproduct hydrogen producers are sitting on volume they can\u2019t efficiently sell. Chlor-alkali plants make it as an unavoidable byproduct; new green projects come online with no committed offtake. The majors won\u2019t serve their small, scattered demand. That mismatch is the market we step into \u2014 and our wedge is being the first to map it.",
     viz: "supply",
-    metric: [["Byproduct H\u2082 share of supply", "30\u201350%"], ["Beachhead", "California"]]
+    metric: [["Byproduct H\u2082 share of supply", "30\u201350%"], ["Beachhead", "Gulf Coast"]]
   },
   {
     icon: "ti-search", color: "purple",
     title: "The demand is real but underserved", sub: "Why buyers switch",
-    body: "Thousands of industrial buyers \u2014 metal heat treaters, food processors, electronics \u2014 need 10\u2013100 kg/day and get poor pricing and rigid contracts from the incumbents. They\u2019re too small to matter to Air Products and Linde, but together they\u2019re a large, recurring, fragmented market that no one is aggregating.",
+    body: "Thousands of industrial buyers \u2014 metal heat treaters, food processors, electronics \u2014 draw 50\u2013300 kg/day \u2014 roughly 15\u201390 SCFM in the units their furnaces speak \u2014 and get poor pricing and rigid contracts from the incumbents. They\u2019re too small to matter to Air Products and Linde, but together they\u2019re a large, recurring, fragmented market that no one is aggregating.",
     viz: "demand",
-    metric: [["US merchant H\u2082 market", "~$5.4B"], ["Underserved segment", "10\u2013100 kg/day"]]
+    metric: [["US merchant H\u2082 market", "~$5.4B"], ["Underserved segment", "50\u2013300 kg/day"]]
   },
   {
     icon: "ti-file-text", color: "teal",
@@ -41,17 +41,17 @@ const STAGES = [
   },
   {
     icon: "ti-coin", color: "green",
-    title: "Credits make the economics work", sub: "The margin story",
-    body: "The real margin isn\u2019t the trucking spread \u2014 it\u2019s orchestrating LCFS and 45V credit monetization for producers too small to do it themselves. That fee can exceed the molecule spread and rises with policy support. California\u2019s credit stack is the richest in the country, which is exactly why we start there.",
-    viz: "credit",
-    metric: [["Molecule spread", "~$0.50/kg"], ["Credit fee", "~$0.40/kg+"]]
+    title: "Priced like a distributor, not a broker", sub: "The company-defining decision",
+    body: "A freight broker earns $0.30\u20131.00/kg moving someone else\u2019s product \u2014 and at our volumes that posture never breaks even. We are the principal: we own purity QA, hazmat compliance, credit risk, and single-point accountability, which earns a $2.00\u20133.50/kg net take on a ~$9/kg delivered price. At $0.50/kg the business needs 45+ accounts to break even; at $2.50/kg it needs nine to twelve. Drag the take slider in the model and watch the whole story change.",
+    viz: "take",
+    metric: [["Net take (planning)", "$2.50/kg"], ["Break-even", "9\u201312 accounts"]]
   },
   {
     icon: "ti-trending-up", color: "coral",
     title: "Liquidity compounds into a network", sub: "The venture outcome",
     body: "Past a critical density, the marketplace flips: each producer makes more matches automatic, each buyer makes more supply worth signing. Matching stops being manual and starts being a data advantage. That liquidity \u2014 owned in one region first, then templated to the next \u2014 is the defensible network and the Series A story.",
     viz: "mass",
-    metric: [["Critical mass", "~25 buyers"], ["GMV at scale", "$1\u20133M / region"]]
+    metric: [["Critical mass", "~25 buyers"], ["GMV at scale", "$3\u20136M / region"]]
   }
 ];
 
@@ -74,8 +74,8 @@ function buildViz(kind) {
       return `<div class="viz-row">${vizNodes("info", 3, "ti-building-factory")}<i class="ti ti-link viz-arrow"></i>${vizNodes("teal", 4, "ti-user")}</div>`;
     case "deal":
       return `<div class="viz-row">${vizNodes("info", 1, "ti-building-factory")}<i class="ti ti-truck-delivery viz-arrow" style="color:var(--amber);font-size:20px;"></i>${vizNodes("amber", 1, "ti-user")}<span class="viz-label">price locked, risk-free spread</span></div>`;
-    case "credit":
-      return `<div class="viz-row"><span class="viz-label" style="margin-left:0;">molecule</span><span class="viz-bar" style="width:60px;background:var(--accent-bg);"></span><span class="viz-label" style="margin-left:0;">+ credit</span><span class="viz-bar" style="width:48px;background:var(--success-bg);"></span></div>`;
+    case "take":
+      return `<div class="viz-row"><span class="viz-label" style="margin-left:0;">broker $0.50/kg</span><span class="viz-bar" style="width:18px;background:var(--bg-tertiary);border:0.5px solid var(--border-strong);"></span><span class="viz-label" style="margin-left:0;">our take $2.50/kg</span><span class="viz-bar" style="width:90px;background:var(--success-bg);"></span></div>`;
     case "mass":
       return `<div class="viz-row" style="gap:4px;">${vizNodes("info", 4, "ti-building-factory")}<i class="ti ti-arrows-shuffle viz-arrow" style="color:var(--coral);font-size:20px;"></i>${vizNodes("coral", 8, "ti-user")}</div>`;
     default:

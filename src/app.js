@@ -59,15 +59,15 @@
   renderStage();
 
   // ---------- Model controls ----------
-  const SLIDERS = ["prod", "buy", "vol", "spread", "credit", "churn"];
+  const SLIDERS = ["prod", "buy", "vol", "take", "opex", "churn"];
 
   function readInputs() {
     return {
       prod: +$("s-prod").value,
       buy: +$("s-buy").value,
       vol: +$("s-vol").value,
-      spread: +$("s-spread").value,
-      credit: +$("s-credit").value,
+      take: +$("s-take").value,
+      opex: +$("s-opex").value,
       churn: +$("s-churn").value
     };
   }
@@ -76,8 +76,9 @@
     $("o-prod").textContent = inp.prod;
     $("o-buy").textContent = inp.buy;
     $("o-vol").textContent = inp.vol;
-    $("o-spread").textContent = inp.spread.toFixed(2);
-    $("o-credit").textContent = inp.credit.toFixed(2);
+    $("o-vol-hint").innerHTML = "&approx; " + fmtScfh(inp.vol) + " SCFH &mdash; the flow your buyer quotes";
+    $("o-take").textContent = inp.take.toFixed(2);
+    $("o-opex").textContent = inp.opex;
     $("o-churn").textContent = inp.churn;
   }
 
@@ -96,6 +97,12 @@
     $("m-buyers").textContent = Math.round(r.finalBuyers);
     $("m-gmv").textContent = fmtMoney(r.gmv);
     $("m-rev").textContent = fmtMoney(r.net);
+    const contrib = $("m-contrib");
+    contrib.textContent = (r.contribution >= 0 ? "+" : "") + fmtMoney(r.contribution);
+    contrib.style.color = r.contribution >= 0 ? "var(--success)" : "var(--coral)";
+    const be = $("m-be");
+    be.textContent = r.beMonth ? "Mo " + r.beMonth : "Not in 24mo";
+    be.style.color = r.beMonth ? "var(--success)" : "var(--coral)";
     const crit = $("m-crit");
     crit.textContent = r.critMonth ? "Mo " + r.critMonth : "Not in 24mo";
     crit.style.color = r.critMonth ? "var(--success)" : "var(--text-secondary)";

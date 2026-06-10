@@ -29,6 +29,7 @@
       </div>
       <nav class="header-nav" aria-label="Primary">
         <a href="#simulator">Simulator</a>
+        <a href="#market">Market</a>
         <a href="#thesis">Thesis</a>
         <a href="#footer">About</a>
       </nav>
@@ -43,9 +44,9 @@
         <p class="lede">
           Green hydrogen and byproduct supply is stranded; thousands of industrial buyers are
           underserved by the majors. We are the marketplace that connects them &mdash; proving
-          demand with signed LOIs before we scale, and stacking credit margin the incumbents
-          ignore. This walkthrough is the thesis; the model shows the path to a defensible
-          network.
+          demand with signed LOIs before we scale, and earning distributor-grade margin on the
+          long-tail accounts the incumbents misprice. This walkthrough is the thesis; the model
+          shows the path to a defensible network.
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="#simulator">See the thesis</a>
@@ -99,16 +100,18 @@
               <input type="range" id="s-buy" min="0.5" max="10" value="2" step="0.5" />
             </div>
             <div class="control">
-              <div class="control-label"><label for="s-vol">Avg volume / buyer (kg/day)</label><span id="o-vol">50</span></div>
-              <input type="range" id="s-vol" min="10" max="200" value="50" step="10" />
+              <div class="control-label"><label for="s-vol">Avg volume / buyer (kg/day)</label><span id="o-vol">100</span></div>
+              <input type="range" id="s-vol" min="50" max="300" value="100" step="25" />
+              <p id="o-vol-hint" class="control-hint">&approx; 1,760 SCFH &mdash; the flow your buyer quotes</p>
             </div>
             <div class="control">
-              <div class="control-label"><label for="s-spread">Molecule spread ($/kg)</label><span id="o-spread">0.50</span></div>
-              <input type="range" id="s-spread" min="0.1" max="2" value="0.5" step="0.1" />
+              <div class="control-label"><label for="s-take">Net take ($/kg)</label><span id="o-take">2.50</span></div>
+              <input type="range" id="s-take" min="0.5" max="3.5" value="2.5" step="0.25" />
+              <p class="control-hint">$0.50 = broker posture &middot; $2.50 = distributor posture</p>
             </div>
             <div class="control">
-              <div class="control-label"><label for="s-credit">Credit fee ($/kg)</label><span id="o-credit">0.40</span></div>
-              <input type="range" id="s-credit" min="0" max="3" value="0.4" step="0.1" />
+              <div class="control-label"><label for="s-opex">Monthly opex ($K)</label><span id="o-opex">55</span></div>
+              <input type="range" id="s-opex" min="30" max="80" value="55" step="5" />
             </div>
             <div class="control">
               <div class="control-label"><label for="s-churn">Monthly churn (%)</label><span id="o-churn">5</span></div>
@@ -120,16 +123,21 @@
             <div class="metric-card"><p class="metric-label">Active buyers (mo 24)</p><p id="m-buyers" class="metric-val">&mdash;</p></div>
             <div class="metric-card"><p class="metric-label">Annual GMV (mo 24)</p><p id="m-gmv" class="metric-val">&mdash;</p></div>
             <div class="metric-card"><p class="metric-label">Annual net revenue</p><p id="m-rev" class="metric-val">&mdash;</p></div>
+            <div class="metric-card"><p class="metric-label">Contribution / mo (mo 24)</p><p id="m-contrib" class="metric-val">&mdash;</p></div>
+            <div class="metric-card"><p class="metric-label">Break-even hit</p><p id="m-be" class="metric-val">&mdash;</p></div>
             <div class="metric-card"><p class="metric-label">Critical mass hit</p><p id="m-crit" class="metric-val">&mdash;</p></div>
           </div>
 
           <div class="chart-wrap"><canvas id="growth-chart"></canvas></div>
           <p class="model-note">
-            How to read this: critical mass is the point where supply density makes most matches automatic
-            (modeled at 25 active buyers per region) &mdash; the inflection where a coordination business becomes
-            a network. Net revenue = (molecule spread + credit fee) &times; delivered volume, capped by signed supply.
-            Acquisition is modeled roughly linear; in practice the earliest months are slower, which is precisely
-            why the raise funds the cold-start period. These are illustrative assumptions, not projections.
+            How to read this: net revenue = net take &times; delivered volume, capped by signed supply, on a
+            ~$9/kg delivered price. Break-even compares monthly net take against opex &mdash; at a $0.50/kg
+            broker-style take the model never breaks even, while the $2.50/kg distributor-style take breaks
+            even on roughly 9&ndash;12 accounts. That pricing posture is the company-defining decision.
+            Critical mass is the point where supply density makes most matches automatic (modeled at 25 active
+            buyers per region). Acquisition is modeled roughly linear; in practice the earliest months are
+            slower, which is precisely why the raise funds the cold-start period. Illustrative assumptions,
+            not projections.
           </p>
           <div class="model-actions">
             <button id="reset-btn" class="btn"><i class="ti ti-refresh" aria-hidden="true"></i> Reset to defaults</button>
@@ -137,6 +145,40 @@
           </div>
           <p id="share-status" class="share-status" role="status"></p>
         </div>
+      </div>
+    </section>
+
+    <section id="market" class="market-section">
+      <div class="wrap">
+        <p class="eyebrow">The market</p>
+        <h2>Too big for cylinders. Far too small for a pipeline.</h2>
+        <p class="market-lede">
+          Every hydrogen supply mode is economic only inside a band of daily draw. Our buyers
+          &mdash; heat treaters and similar plants at 50&ndash;300 kg/day &mdash; have outgrown
+          cylinders and MicroBulk by 4&times; or more, can&rsquo;t justify a liquid tank or
+          on-site generation, and draw orders of magnitude too little for the pipeline supply
+          that anchors the majors&rsquo; business. The one mode that fits, the gaseous tube
+          trailer, is exactly where incumbent economics are weakest &mdash; so the band is
+          mispriced or pushed into the wrong mode. That mispriced band is our market.
+        </p>
+        <div class="market-card">
+          <div id="market-map" class="market-map" role="img"
+            aria-label="Chart of hydrogen supply modes by daily draw on a logarithmic scale. Cylinders and MicroBulk serve below about 12 kilograms per day; bulk liquid, on-site generation, and pipelines serve from hundreds of kilograms to hundreds of tonnes per day. The 50 to 300 kilograms per day band is served only by gaseous tube trailers and is mispriced by incumbents — that band is the target market."></div>
+        </div>
+        <div class="metrics-grid market-stats">
+          <div class="metric-card"><p class="metric-label">MicroBulk ceiling</p><p class="metric-val">~12 kg/day</p><p class="metric-foot">our smallest buyer already draws 4&times; past it</p></div>
+          <div class="metric-card"><p class="metric-label">Trailer dwell at 50 kg/day</p><p class="metric-val">8&ndash;16 days</p><p class="metric-foot">per fill &mdash; why majors price the band as a nuisance</p></div>
+          <div class="metric-card"><p class="metric-label">Pipeline-scale draw</p><p class="metric-val">30&ndash;1,000&times;</p><p class="metric-foot">a pipeline customer vs. our typical account</p></div>
+        </div>
+        <p class="model-note">
+          Bands are planning-grade ranges from our segment analysis (DOE trailer payloads, the
+          incumbent cylinder &rarr; MicroBulk &rarr; bulk &rarr; on-site supply ladder, and
+          industry crossover data). Crossovers are ranges, not lines &mdash; they shift with
+          distance, contract terms, and regional competition. Conversion key: 1 kg H&#8322;
+          &approx; 423 SCF &approx; 11.1 Nm&sup3;; SCFM = SCFH &divide; 60. A buyer
+          &ldquo;running 2,000 SCFH&rdquo; across two shifts draws &approx; 75 kg/day &mdash;
+          squarely in band.
+        </p>
       </div>
     </section>
 
@@ -152,17 +194,17 @@
           <article class="thesis-card">
             <span class="thesis-icon"><i class="ti ti-map-pin" aria-hidden="true"></i></span>
             <h3>A beachhead, then a template</h3>
-            <p>We win California first &mdash; its LCFS + 45V credit stack is the richest in the country &mdash; then replicate the playbook region by region. Concentrated liquidity in one market beats thin presence in five.</p>
+            <p>We win the Gulf Coast first &mdash; the densest cluster of byproduct chlor-alkali hydrogen in the country, beside hundreds of heat-treat and industrial buyers &mdash; then replicate the playbook region by region. Concentrated liquidity in one market beats thin presence in five.</p>
           </article>
           <article class="thesis-card">
             <span class="thesis-icon"><i class="ti ti-shield-check" aria-hidden="true"></i></span>
             <h3>A moat the majors won't contest</h3>
-            <p>Air Products and Linde have no structural incentive to serve 10&ndash;100 kg/day buyers. We own the long tail through operational trust &mdash; on-time, on-spec delivery &mdash; which compounds into switching costs they can't easily attack.</p>
+            <p>Air Products and Linde have no structural incentive to serve 50&ndash;300 kg/day buyers. We own the long tail through operational trust &mdash; on-time, on-spec delivery &mdash; which compounds into switching costs they can't easily attack.</p>
           </article>
           <article class="thesis-card">
             <span class="thesis-icon"><i class="ti ti-coin" aria-hidden="true"></i></span>
-            <h3>Margin where others see none</h3>
-            <p>The durable margin isn't trucking coordination &mdash; it's monetizing LCFS and 45V credits for producers too small to do it alone. Set the credit fee to zero in the model and watch how thin a pure-logistics business would be.</p>
+            <h3>Distributor margin, broker assets</h3>
+            <p>We're the principal, not a freight broker: we own QA, hazmat compliance, and credit risk, and price like a distributor (~$2.50/kg net take) while owning no plants and leasing no trailers. Drag the net take to $0.50 in the model and watch how thin a pure-brokerage would be.</p>
           </article>
         </div>
       </div>
@@ -181,6 +223,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <script src="./src/stages.js"></script>
+  <script src="./src/market.js"></script>
   <script src="./src/model.js"></script>
   <script src="./src/app.js"></script>
 </body>
