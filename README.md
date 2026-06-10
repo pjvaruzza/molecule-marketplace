@@ -6,11 +6,12 @@ An interactive web app that tells the story of building a market-maker for green
 Two modes:
 
 - **Story walkthrough** — a six-stage narrative of the cold-start sequence
-  (lock supply → find demand → convert to LOIs → first manual deal → stack credit margin →
-  reach critical mass). Built to click through in a pitch.
+  (lock supply → find demand → convert to LOIs → first manual deal → price like a
+  distributor → reach critical mass). Built to click through in a pitch.
 - **Live model** — drag six assumptions (producers signed, buyer acquisition rate, volume,
-  molecule spread, credit fee, churn) and watch active buyers and net revenue compound over
-  24 months, with the critical-mass month flagged.
+  net take, opex, churn) and watch active buyers and net revenue compound over 24 months,
+  with the break-even and critical-mass months flagged. Economics follow
+  `docs/unit-economics-v2.md`.
 
 It's a planning and storytelling tool. The figures are illustrative assumptions, not forecasts.
 
@@ -29,9 +30,11 @@ npm test           # runs the model sanity tests
 index.html            Page shell and layout
 src/styles.css        Design system, light/dark mode
 src/stages.js         Story-walkthrough content (edit the narrative here)
+src/market.js         Market-map graphic: supply modes vs. daily H2 draw (log scale)
 src/model.js          Pure simulation math (no DOM) — the part to trust and test
 src/app.js            Wiring: tabs, navigation, chart, controls, share links
 test/model.test.js    Zero-dependency tests for the model
+test/market.test.js   Zero-dependency tests for the market-map data and scale
 netlify.toml          Netlify config (publish root, security headers)
 .github/workflows/    CI: runs npm test on push and PR
 ```
